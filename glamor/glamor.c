@@ -974,7 +974,7 @@ glamor_set_glvnd_vendor(ScreenPtr screen, const char *vendor_name)
     if (glamor_priv->glvnd_vendor)
         free(glamor_priv->glvnd_vendor);
 
-    glamor_priv->glvnd_vendor = XNFstrdup(vendor_name);
+    glamor_priv->glvnd_vendor = strdup(vendor_name);
 }
 
 void

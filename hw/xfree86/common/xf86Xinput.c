@@ -722,7 +722,7 @@ MergeInputClasses(const InputInfoPtr idev, const InputAttributes * attrs)
         classopts = xf86optionListDup(cl->option_lst);
         if (cl->driver) {
             free((void *) idev->driver);
-            idev->driver = Xstrdup(cl->driver);
+            idev->driver = strdup(cl->driver);
             if (!idev->driver) {
                 LogMessageVerb(X_ERROR, 1, "Failed to allocate memory while merging "
                                "InputClass configuration");
@@ -1049,7 +1049,7 @@ NewInputDeviceRequest(InputOption *options, InputAttributes * attrs,
                 rval = BadRequest;
                 goto unwind;
             }
-            pInfo->driver = Xstrdup(value);
+            pInfo->driver = strdup(value);
             if (!pInfo->driver) {
                 rval = BadAlloc;
                 goto unwind;
@@ -1061,7 +1061,7 @@ NewInputDeviceRequest(InputOption *options, InputAttributes * attrs,
                 rval = BadRequest;
                 goto unwind;
             }
-            pInfo->name = Xstrdup(value);
+            pInfo->name = strdup(value);
             if (!pInfo->name) {
                 rval = BadAlloc;
                 goto unwind;

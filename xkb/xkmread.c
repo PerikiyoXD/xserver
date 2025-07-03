@@ -889,9 +889,9 @@ ReadXkmGeomDoodad(FILE * file, XkbGeometryPtr geom, XkbSectionPtr section)
         doodad->text.height = doodadWire.text.height;
         doodad->text.color_ndx = doodadWire.text.color_ndx;
         nRead += XkmGetCountedString(file, buf, 100);
-        doodad->text.text = Xstrdup(buf);
+        doodad->text.text = strdup(buf);
         nRead += XkmGetCountedString(file, buf, 100);
-        doodad->text.font = Xstrdup(buf);
+        doodad->text.font = strdup(buf);
         break;
     case XkbIndicatorDoodad:
         doodad->indicator.shape_ndx = doodadWire.indicator.shape_ndx;
@@ -903,7 +903,7 @@ ReadXkmGeomDoodad(FILE * file, XkbGeometryPtr geom, XkbSectionPtr section)
         doodad->logo.color_ndx = doodadWire.logo.color_ndx;
         doodad->logo.shape_ndx = doodadWire.logo.shape_ndx;
         nRead += XkmGetCountedString(file, buf, 100);
-        doodad->logo.logo_name = Xstrdup(buf);
+        doodad->logo.logo_name = strdup(buf);
         break;
     default:
         /* report error? */
@@ -1062,7 +1062,7 @@ ReadXkmGeometry(FILE * file, XkbDescPtr xkb)
     geom->width_mm = wireGeom.width_mm;
     geom->height_mm = wireGeom.height_mm;
     nRead += XkmGetCountedString(file, buf, 100);
-    geom->label_font = Xstrdup(buf);
+    geom->label_font = strdup(buf);
     if (wireGeom.num_properties > 0) {
         char val[1024];
 

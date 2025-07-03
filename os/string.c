@@ -12,28 +12,6 @@
 
 #include "os.h"
 
-char *
-Xstrdup(const char *s)
-{
-    if (s == NULL)
-        return NULL;
-    return strdup(s);
-}
-
-char *
-XNFstrdup(const char *s)
-{
-    char *ret;
-
-    if (s == NULL)
-        return NULL;
-
-    ret = strdup(s);
-    if (!ret)
-        FatalError("XNFstrdup: Out of memory");
-    return ret;
-}
-
 /*
  * Tokenize a string into a NULL terminated array of strings. Always returns
  * an allocated array unless an error occurs.

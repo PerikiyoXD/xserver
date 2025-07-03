@@ -554,7 +554,7 @@ configFiles(XF86ConfFilesPtr fileconf)
     temp_path = defaultFontPath ? (char *) defaultFontPath : (char *) "";
 
     /* xf86ValidateFontPath modifies its argument, but returns a copy of it. */
-    temp_path = must_copy ? XNFstrdup(defaultFontPath) : (char *) defaultFontPath;
+    temp_path = must_copy ? strdup(defaultFontPath) : (char *) defaultFontPath;
     defaultFontPath = xf86ValidateFontPath(temp_path);
     free(temp_path);
 
@@ -1940,7 +1940,7 @@ configMonitor(MonPtr monitorp, XF86ConfMonitorPtr conf_monitor)
         mode->Flags = cmodep->ml_flags;
         mode->HSkew = cmodep->ml_hskew;
         mode->VScan = cmodep->ml_vscan;
-        mode->name = XNFstrdup(cmodep->ml_identifier);
+        mode->name = strdup(cmodep->ml_identifier);
         if (last) {
             mode->prev = last;
             last->next = mode;
@@ -2337,7 +2337,7 @@ xf86HandleConfigFile(Bool autoconfig)
         filename = xf86openConfigFile(filesearch, xf86ConfigFile, PROJECTROOT);
         if (filename) {
             LogMessageVerb(filefrom, 0, "Using config file: \"%s\"\n", filename);
-            xf86ConfigFile = XNFstrdup(filename);
+            xf86ConfigFile = strdup(filename);
         }
         else {
             if (xf86ConfigFile)
@@ -2347,7 +2347,7 @@ xf86HandleConfigFile(Bool autoconfig)
         if (dirname) {
             LogMessageVerb(dirfrom, 0, "Using config directory: \"%s\"\n",
                         dirname);
-            xf86ConfigDir = XNFstrdup(dirname);
+            xf86ConfigDir = strdup(dirname);
         }
         else {
             if (xf86ConfigDir)

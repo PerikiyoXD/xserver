@@ -1214,27 +1214,27 @@ dix_input_attributes(void)
     assert(memcmp(orig, new, sizeof(InputAttributes)) == 0);
     FreeInputAttributes(new);
 
-    orig->product = XNFstrdup("product name");
+    orig->product = strdup("product name");
     new = DuplicateInputAttributes(orig);
     cmp_attr_fields(orig, new);
     FreeInputAttributes(new);
 
-    orig->vendor = XNFstrdup("vendor name");
+    orig->vendor = strdup("vendor name");
     new = DuplicateInputAttributes(orig);
     cmp_attr_fields(orig, new);
     FreeInputAttributes(new);
 
-    orig->device = XNFstrdup("device path");
+    orig->device = strdup("device path");
     new = DuplicateInputAttributes(orig);
     cmp_attr_fields(orig, new);
     FreeInputAttributes(new);
 
-    orig->pnp_id = XNFstrdup("PnPID");
+    orig->pnp_id = strdup("PnPID");
     new = DuplicateInputAttributes(orig);
     cmp_attr_fields(orig, new);
     FreeInputAttributes(new);
 
-    orig->usb_id = XNFstrdup("USBID");
+    orig->usb_id = strdup("USBID");
     new = DuplicateInputAttributes(orig);
     cmp_attr_fields(orig, new);
     FreeInputAttributes(new);

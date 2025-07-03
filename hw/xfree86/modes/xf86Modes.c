@@ -221,7 +221,7 @@ xf86DuplicateMode(const DisplayModeRec * pMode)
     if (pMode->name == NULL)
         xf86SetModeDefaultName(pNew);
     else
-        pNew->name = XNFstrdup(pMode->name);
+        pNew->name = strdup(pMode->name);
 
     return pNew;
 }
@@ -682,7 +682,7 @@ xf86GetConfigModes(XF86ConfModeLinePtr conf_mode)
         mode = calloc(1, sizeof(DisplayModeRec));
         if (!mode)
             continue;
-        mode->name = Xstrdup(conf_mode->ml_identifier);
+        mode->name = strdup(conf_mode->ml_identifier);
         if (!mode->name) {
             free(mode);
             continue;
