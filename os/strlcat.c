@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 1998 Todd C. Miller <Todd.Miller@courtesan.com>
+ * Copyright (c) 2025 Pedro Luis Valadés Viera <pvaladesv98@proton.me>
  *
  * Permission to use, copy, modify, and distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -14,43 +15,67 @@
  * CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#include <dix-config.h>
+/**
+ * @file strlcat.c
+ * @brief Safe string concatenation implementation
+ */
 
+/* System headers */
 #include <sys/types.h>
 #include <string.h>
+
+/* Project configuration */
+#include <dix-config.h>
+
+/* Project headers */
 #include "os.h"
 
-/*
- * Appends src to string dst of size siz (unlike strncat, siz is the
- * full size of dst, not space left).  At most siz-1 characters
- * will be copied.  Always NUL terminates (unless siz <= strlen(dst)).
- * Returns strlen(src) + MIN(siz, strlen(initial dst)).
- * If retval >= siz, truncation occurred.
+/**
+ * @brief Safe string concatenation with size bounds
+ * @param dst Destination buffer to append to
+ * @param src Source string to append
+ * @param siz Total size of destination buffer (not remaining space)
+ * @return Total length that would result (may exceed siz if truncated)
+ * 
+ * Appends src to dst with guaranteed null termination and bounds checking.
+ * Unlike strncat(), siz represents the full buffer size, not remaining space.
+ * 
+ * Return value semantics:
+ * - If return >= siz: truncation occurred
+ * - If return < siz: concatenation successful
+ * 
+ * @note Always null-terminates unless siz <= strlen(dst)
+ * @warning dst must be null-terminated string on input
  */
 size_t
 strlcat(char *dst, const char *src, size_t siz)
 {
-    register char *d = dst;
-    register const char *s = src;
-    register size_t n = siz;
-    size_t dlen;
+    char *dst_ptr = dst;
+    const char *src_ptr = src;
+    size_t remaining = siz;
+    size_t dst_len;
 
-    /* Find the end of dst and adjust bytes left but don't go past end */
-    while (n-- != 0 && *d != '\0')
-        d++;
-    dlen = d - dst;
-    n = siz - dlen;
+    /* Find end of dst and calculate remaining space */
+    while (remaining-- != 0 && *dst_ptr != '\0')
+        dst_ptr++;
+    
+    dst_len = dst_ptr - dst;
+    remaining = siz - dst_len;
 
-    if (n == 0)
-        return (dlen + strlen(s));
-    while (*s != '\0') {
-        if (n != 1) {
-            *d++ = *s;
-            n--;
+    if (remaining == 0)
+        return (dst_len + strlen(src_ptr));
+
+    /* Copy src characters while space remains */
+    while (*src_ptr != '\0') {
+        if (remaining != 1) {
+            *dst_ptr++ = *src_ptr;
+            remaining--;
         }
-        s++;
+        src_ptr++;
     }
-    *d = '\0';
+    
+    /* Always null terminate */
+    *dst_ptr = '\0';
 
-    return (dlen + (s - src));  /* count does not include NUL */
+    return (dst_len + (src_ptr - src));  /* Total length (excluding null) */
 }
