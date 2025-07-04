@@ -25,6 +25,28 @@
 #include "os/fmt.h"
 #include "os.h"
 
+char *
+Xstrdup(const char *s)
+{
+    if (s == NULL)
+        return NULL;
+    return strdup(s);
+}
+
+char *
+XNFstrdup(const char *s)
+{
+    char *ret;
+
+    if (s == NULL)
+        return NULL;
+
+    ret = strdup(s);
+    if (!ret)
+        FatalError("XNFstrdup: Out of memory");
+    return ret;
+}
+
 /**
  * @brief Tokenize string into NULL-terminated array with single allocation
  * @param str Input string to tokenize (may be NULL)

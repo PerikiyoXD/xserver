@@ -5882,18 +5882,18 @@ ProcXkbGetKbdByName(ClientPtr client)
         fwant = stuff->want | stuff->need;
     if ((!names.compat) &&
         (fwant & (XkbGBN_CompatMapMask | XkbGBN_IndicatorMapMask))) {
-        names.compat = strdup("%");
+        names.compat = Xstrdup("%");
     }
     if ((!names.types) && (fwant & (XkbGBN_TypesMask))) {
-        names.types = strdup("%");
+        names.types = Xstrdup("%");
     }
     if ((!names.symbols) && (fwant & XkbGBN_SymbolsMask)) {
-        names.symbols = strdup("%");
+        names.symbols = Xstrdup("%");
     }
     geom_changed = ((names.geometry != NULL) &&
                     (strcmp(names.geometry, "%") != 0));
     if ((!names.geometry) && (fwant & XkbGBN_GeometryMask)) {
-        names.geometry = strdup("%");
+        names.geometry = Xstrdup("%");
         geom_changed = FALSE;
     }
 

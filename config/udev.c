@@ -539,8 +539,8 @@ config_udev_odev_setup_attribs(struct udev_device *udev_device, const char *path
     struct OdevAttributes *attribs = config_odev_allocate_attributes();
     const char *value, *str;
 
-    attribs->path = strdup(path);
-    attribs->syspath = strdup(syspath);
+    attribs->path = XNFstrdup(path);
+    attribs->syspath = XNFstrdup(syspath);
     attribs->major = major;
     attribs->minor = minor;
 
@@ -551,11 +551,11 @@ config_udev_odev_setup_attribs(struct udev_device *udev_device, const char *path
         if ((str = strstr(value, "usb-")))
             value = str;
 
-        attribs->busid = strdup(value);
+        attribs->busid = XNFstrdup(value);
         attribs->busid[3] = ':';
     } else if (value && (str = strrstr(value, "platform-"))) {
         value = str + 9;
-        attribs->busid = strdup(value);
+        attribs->busid = XNFstrdup(value);
     }
 
     if (!value)

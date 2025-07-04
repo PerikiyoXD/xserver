@@ -174,7 +174,7 @@ _glamor_create_getcolor_fs_source(ScreenPtr screen, int stops_count,
         return gradient_fs;
     }
     else {
-        return strdup(gradient_fs_getcolor_no_array);
+        return XNFstrdup(gradient_fs_getcolor_no_array);
     }
 }
 

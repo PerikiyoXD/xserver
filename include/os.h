@@ -84,8 +84,8 @@ typedef struct _NewClientRec *NewClientPtr;
 #define xnfcalloc(_num, _size) XNFcallocarray((_num), (_size))
 #define xnfrealloc(ptr, size) XNFrealloc((void *)(ptr), (unsigned long)(size))
 
-#define xstrdup(s) strdup(s)
-#define xnfstrdup(s) strdup(s)
+#define xstrdup(s) Xstrdup(s)
+#define xnfstrdup(s) XNFstrdup(s)
 #endif
 
 #include <stdio.h>
@@ -179,14 +179,14 @@ XNFreallocarray(void *ptr, size_t nmemb, size_t size);
  * function that it is safe to pass NULL, as NULL will be returned.
  */
 extern _X_EXPORT char *
-strdup(const char *s);
+Xstrdup(const char *s);
 
 /*
  * This function strdup(3)s passed string, terminating the server if there is
  * not enough memory. If NULL is passed to this function, NULL is returned.
  */
 extern _X_EXPORT char *
-strdup(const char *s);
+XNFstrdup(const char *s);
 
 /* Include new X*asprintf API */
 #include "Xprintf.h"

@@ -65,7 +65,7 @@ get_drm_info(struct OdevAttributes *attribs, char *path, int delayed_index)
         goto out;
     }
 
-    xf86_platform_odev_attributes(delayed_index)->driver = strdup(v->name);
+    xf86_platform_odev_attributes(delayed_index)->driver = XNFstrdup(v->name);
     drmFreeVersion(v);
 
 out:

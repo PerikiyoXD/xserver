@@ -249,7 +249,7 @@ XkbWriteXKBKeymapForNames(FILE * file,
         if (wantNames & XkmTypesMask) {
             if (old_names->types != None) {
                 tmp = NameForAtom(old_names->types);
-                names->types = strdup(tmp);
+                names->types = Xstrdup(tmp);
             }
             else {
                 wantDflts |= XkmTypesMask;
@@ -259,7 +259,7 @@ XkbWriteXKBKeymapForNames(FILE * file,
         if (wantNames & XkmCompatMapMask) {
             if (old_names->compat != None) {
                 tmp = NameForAtom(old_names->compat);
-                names->compat = strdup(tmp);
+                names->compat = Xstrdup(tmp);
             }
             else
                 wantDflts |= XkmCompatMapMask;
@@ -269,13 +269,13 @@ XkbWriteXKBKeymapForNames(FILE * file,
             if (old_names->symbols == None)
                 return FALSE;
             tmp = NameForAtom(old_names->symbols);
-            names->symbols = strdup(tmp);
+            names->symbols = Xstrdup(tmp);
             complete |= XkmSymbolsMask;
         }
         if (wantNames & XkmKeyNamesMask) {
             if (old_names->keycodes != None) {
                 tmp = NameForAtom(old_names->keycodes);
-                names->keycodes = strdup(tmp);
+                names->keycodes = Xstrdup(tmp);
             }
             else
                 wantDflts |= XkmKeyNamesMask;
@@ -285,7 +285,7 @@ XkbWriteXKBKeymapForNames(FILE * file,
             if (old_names->geometry == None)
                 return FALSE;
             tmp = NameForAtom(old_names->geometry);
-            names->geometry = strdup(tmp);
+            names->geometry = Xstrdup(tmp);
             complete |= XkmGeometryMask;
             wantNames &= ~XkmGeometryMask;
         }

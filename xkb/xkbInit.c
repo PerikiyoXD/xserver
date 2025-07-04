@@ -219,15 +219,15 @@ static void
 XkbSetRulesUsed(XkbRMLVOSet * rmlvo)
 {
     free(XkbRulesUsed);
-    XkbRulesUsed = (rmlvo->rules ? strdup(rmlvo->rules) : NULL);
+    XkbRulesUsed = (rmlvo->rules ? Xstrdup(rmlvo->rules) : NULL);
     free(XkbModelUsed);
-    XkbModelUsed = (rmlvo->model ? strdup(rmlvo->model) : NULL);
+    XkbModelUsed = (rmlvo->model ? Xstrdup(rmlvo->model) : NULL);
     free(XkbLayoutUsed);
-    XkbLayoutUsed = (rmlvo->layout ? strdup(rmlvo->layout) : NULL);
+    XkbLayoutUsed = (rmlvo->layout ? Xstrdup(rmlvo->layout) : NULL);
     free(XkbVariantUsed);
-    XkbVariantUsed = (rmlvo->variant ? strdup(rmlvo->variant) : NULL);
+    XkbVariantUsed = (rmlvo->variant ? Xstrdup(rmlvo->variant) : NULL);
     free(XkbOptionsUsed);
-    XkbOptionsUsed = (rmlvo->options ? strdup(rmlvo->options) : NULL);
+    XkbOptionsUsed = (rmlvo->options ? Xstrdup(rmlvo->options) : NULL);
     if (XkbWantRulesProp)
         XkbWriteRulesProp();
     return;
@@ -238,23 +238,23 @@ XkbSetRulesDflts(XkbRMLVOSet * rmlvo)
 {
     if (rmlvo->rules) {
         free(XkbRulesDflt);
-        XkbRulesDflt = strdup(rmlvo->rules);
+        XkbRulesDflt = Xstrdup(rmlvo->rules);
     }
     if (rmlvo->model) {
         free(XkbModelDflt);
-        XkbModelDflt = strdup(rmlvo->model);
+        XkbModelDflt = Xstrdup(rmlvo->model);
     }
     if (rmlvo->layout) {
         free(XkbLayoutDflt);
-        XkbLayoutDflt = strdup(rmlvo->layout);
+        XkbLayoutDflt = Xstrdup(rmlvo->layout);
     }
     if (rmlvo->variant) {
         free(XkbVariantDflt);
-        XkbVariantDflt = strdup(rmlvo->variant);
+        XkbVariantDflt = Xstrdup(rmlvo->variant);
     }
     if (rmlvo->options) {
         free(XkbOptionsDflt);
-        XkbOptionsDflt = strdup(rmlvo->options);
+        XkbOptionsDflt = Xstrdup(rmlvo->options);
     }
     return;
 }

@@ -276,7 +276,7 @@ StringToBusType(const char *busID, const char **retID)
         return BUS_PCI;
     }
 
-    s = strdup(busID);
+    s = Xstrdup(busID);
     p = strtok(s, ":");
     if (p == NULL || *p == 0) {
         free(s);

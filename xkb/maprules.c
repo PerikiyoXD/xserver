@@ -397,8 +397,8 @@ CheckLine(InputLine * line,
             }
             if (*words == '\0')
                 return FALSE;
-            group->name = strdup(gname);
-            group->words = strdup(words);
+            group->name = Xstrdup(gname);
+            group->words = Xstrdup(words);
 
             int i;
             for (i = 1, words = group->words; *words; words++) {
@@ -454,16 +454,16 @@ CheckLine(InputLine * line,
         rule->flags |= XkbRF_Append;
     else
         rule->flags |= XkbRF_Normal;
-    rule->model = strdup(tmp.name[MODEL]);
-    rule->layout = strdup(tmp.name[LAYOUT]);
-    rule->variant = strdup(tmp.name[VARIANT]);
-    rule->option = strdup(tmp.name[OPTION]);
+    rule->model = Xstrdup(tmp.name[MODEL]);
+    rule->layout = Xstrdup(tmp.name[LAYOUT]);
+    rule->variant = Xstrdup(tmp.name[VARIANT]);
+    rule->option = Xstrdup(tmp.name[OPTION]);
 
-    rule->keycodes = strdup(tmp.name[KEYCODES]);
-    rule->symbols = strdup(tmp.name[SYMBOLS]);
-    rule->types = strdup(tmp.name[TYPES]);
-    rule->compat = strdup(tmp.name[COMPAT]);
-    rule->geometry = strdup(tmp.name[GEOMETRY]);
+    rule->keycodes = Xstrdup(tmp.name[KEYCODES]);
+    rule->symbols = Xstrdup(tmp.name[SYMBOLS]);
+    rule->types = Xstrdup(tmp.name[TYPES]);
+    rule->compat = Xstrdup(tmp.name[COMPAT]);
+    rule->geometry = Xstrdup(tmp.name[GEOMETRY]);
 
     rule->layout_num = rule->variant_num = 0;
     for (int i = 0; i < nread; i++) {
@@ -508,7 +508,7 @@ MakeMultiDefs(XkbRF_MultiDefsPtr mdefs, XkbRF_VarDefsPtr defs)
     char *options;
     memset((char *) mdefs, 0, sizeof(XkbRF_MultiDefsRec));
     mdefs->model = defs->model;
-    options = strdup(defs->options);
+    options = Xstrdup(defs->options);
     if (options)
         squeeze_spaces(options);
     mdefs->options = options;
@@ -521,7 +521,7 @@ MakeMultiDefs(XkbRF_MultiDefsPtr mdefs, XkbRF_VarDefsPtr defs)
             char *p;
             char *layout;
 
-            layout = strdup(defs->layout);
+            layout = Xstrdup(defs->layout);
             if (layout == NULL)
                 return FALSE;
             squeeze_spaces(layout);
@@ -549,7 +549,7 @@ MakeMultiDefs(XkbRF_MultiDefsPtr mdefs, XkbRF_VarDefsPtr defs)
             char *p;
             char *variant;
 
-            variant = strdup(defs->variant);
+            variant = Xstrdup(defs->variant);
             if (variant == NULL)
                 return FALSE;
             squeeze_spaces(variant);
@@ -588,7 +588,7 @@ Apply(const char *src, char **dst)
         }
         else {
             if (*dst == NULL)
-                *dst = strdup(src);
+                *dst = Xstrdup(src);
         }
     }
 }

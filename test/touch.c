@@ -63,7 +63,7 @@ touch_grow_queue(void)
 
     memset(&dev, 0, sizeof(dev));
     dev.type = MASTER_POINTER;  /* claim it's a master to stop ptracccel */
-    dev.name = strdup("test device");
+    dev.name = XNFstrdup("test device");
     dev.id = 2;
 
     InitValuatorClassDeviceStruct(&dev, 2, labels, 10, Absolute);
@@ -129,7 +129,7 @@ touch_find_ddxid(void)
 
     memset(&dev, 0, sizeof(dev));
     dev.type = MASTER_POINTER;  /* claim it's a master to stop ptracccel */
-    dev.name = strdup("test device");
+    dev.name = XNFstrdup("test device");
     dev.id = 2;
 
     InitValuatorClassDeviceStruct(&dev, 2, labels, 10, Absolute);
@@ -203,7 +203,7 @@ touch_begin_ddxtouch(void)
 
     memset(&dev, 0, sizeof(dev));
     dev.type = MASTER_POINTER;  /* claim it's a master to stop ptracccel */
-    dev.name = strdup("test device");
+    dev.name = XNFstrdup("test device");
     dev.id = 2;
     inputInfo.devices = &dev;
 
@@ -253,7 +253,7 @@ touch_begin_touch(void)
 
     memset(&dev, 0, sizeof(dev));
     dev.type = MASTER_POINTER;  /* claim it's a master to stop ptracccel */
-    dev.name = strdup("test device");
+    dev.name = XNFstrdup("test device");
     dev.id = 2;
 
     ti = TouchBeginTouch(&dev, sourceid, touchid, TRUE);
@@ -290,7 +290,7 @@ touch_init(void)
 
     memset(&dev, 0, sizeof(dev));
     dev.type = MASTER_POINTER;  /* claim it's a master to stop ptracccel */
-    dev.name = strdup("test device");
+    dev.name = XNFstrdup("test device");
 
     memset(&sprite, 0, sizeof(sprite));
     dev.spriteInfo = &sprite;
